@@ -1,0 +1,1 @@
+enum DateType { FROM, TO }
