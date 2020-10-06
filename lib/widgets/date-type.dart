@@ -1,1 +1,1 @@
-enum DateType { FROM, TO }
+enum DateType { FROM, TO, TIME_FROM, TIME_TO }

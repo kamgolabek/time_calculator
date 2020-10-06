@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:time_calculator/calculator/time_calculator.dart';
 import 'package:time_calculator/provider/date_time_provider.dart';
 import 'package:time_calculator/widgets/date-type.dart';
-import 'package:time_calculator/widgets/time_calculator_widget.dart';
+import 'package:time_calculator/widgets/date_picker_widget.dart';
 import 'package:provider/provider.dart';
+import 'package:time_calculator/widgets/time_difference_widget.dart';
+import 'package:time_calculator/widgets/time_selector_widget.dart';
 
 class MainScreen extends StatelessWidget {
   @override
@@ -17,32 +19,20 @@ class MainScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('Time Calculator'),
       ),
-      body: Center(
-          child: Column(
-        children: [
-          Text(
-            "Time Calculator",
-            style: TextStyle(fontSize: 30),
-          ),
-          DatePickerWidget(DateType.FROM, dtProvider),
-          DatePickerWidget(DateType.TO, dtProvider),
-          Row(
-            children: [Text("From: "), Text(dtProvider.getFrom().toString())],
-          ),
-          Row(
-            children: [Text("To: "), Text(dtProvider.getTo().toString())],
-          ),
-          Row(
-            children: [
-              Text("Difference: (days) " +
-                  TimeCalculator.calculateDifference(
-                          dtProvider.getFrom(), dtProvider.getTo())
-                      .inDays
-                      .toString())
-            ],
-          )
-        ],
-      )),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Center(
+            child: Column(
+          children: [
+            Text(
+              "Time Calculator",
+              style: TextStyle(fontSize: 30),
+            ),
+            TimeSelectorWidget(),
+            TimeDifferenceWidget(),
+          ],
+        )),
+      ),
     );
   }
 }
