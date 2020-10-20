@@ -4,6 +4,8 @@ import 'package:time_calculator/widgets/date-type.dart';
 import 'package:time_calculator/widgets/date_picker_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 
 class TimeSelectorWidget extends StatelessWidget {
   const TimeSelectorWidget({Key key}) : super(key: key);
@@ -24,70 +26,127 @@ class TimeSelectorWidget extends StatelessWidget {
           SizedBox(
             height: 20,
           ),
-          Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Column(
-                    children: [
-                      DatePickerWidget(DateType.FROM, dtProvider),
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      DatePickerWidget(DateType.TIME_FROM, dtProvider),
-                    ],
-                  )
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    DateFormat('yyyy-MM-dd – kk:mm:ss')
-                        .format(dtProvider.getFrom()),
-                    style: TextStyle(fontSize: 28),
-                    softWrap: true,
-                    textAlign: TextAlign.center,
-                  ),
-                ],
-              ),
-            ],
+          Card(
+            elevation: 5,
+            child: Column(
+              children: [
+                // ListTile(
+                //   leading: Icon(FontAwesome.star),
+                //   title: const Text('From'),
+                //   // subtitle: Text(
+                //   //   'Secondary Text',
+                //   //   style: TextStyle(color: Colors.black.withOpacity(0.6)),
+                //   // ),
+                // ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Column(
+                      children: [
+                        Text(
+                          "FROM",
+                          style: TextStyle(
+                            color: Colors.blue,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                          ),
+                        )
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        DatePickerWidget(DateType.FROM, dtProvider),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        DatePickerWidget(DateType.TIME_FROM, dtProvider),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        IconButton(
+                          icon: Icon(FontAwesome.refresh),
+                          onPressed: () => dtProvider.setFrom(DateTime.now()),
+                          tooltip: "Set current time",
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      DateFormat('yyyy-MM-dd – HH:mm:ss')
+                          .format(dtProvider.getFrom()),
+                      style: TextStyle(fontSize: 28),
+                      softWrap: true,
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
           SizedBox(
             height: 30,
           ),
-          Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Column(
-                    children: [
-                      DatePickerWidget(DateType.TO, dtProvider),
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      DatePickerWidget(DateType.TIME_TO, dtProvider),
-                    ],
-                  )
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    DateFormat('yyyy-MM-dd – kk:mm:ss')
-                        .format(dtProvider.getTo()),
-                    style: TextStyle(fontSize: 28),
-                    softWrap: true,
-                    textAlign: TextAlign.center,
-                  ),
-                ],
-              ),
-            ],
+          Card(
+            elevation: 5,
+            margin: EdgeInsets.all(14),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Column(
+                      children: [
+                        Text(
+                          "TO",
+                          style: TextStyle(
+                            color: Colors.blue,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                          ),
+                        )
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        DatePickerWidget(DateType.TO, dtProvider),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        DatePickerWidget(DateType.TIME_TO, dtProvider),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        IconButton(
+                          icon: Icon(FontAwesome.refresh),
+                          onPressed: () => dtProvider.setTo(DateTime.now()),
+                          tooltip: "Set current time",
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      DateFormat('yyyy-MM-dd – HH:mm:ss')
+                          .format(dtProvider.getTo()),
+                      style: TextStyle(fontSize: 28),
+                      softWrap: true,
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ],
       ),
