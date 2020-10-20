@@ -21,6 +21,33 @@ class TimeDifferenceWidget extends StatelessWidget {
     );
   }
 
+  Widget getDiffView(Diff diff) {
+    return Column(
+      children: [
+        Row(children: [
+          difffWdiget("Years: ", diff.diffYears),
+          difffWdiget("Months: ", diff.diffmonths),
+          difffWdiget("Days: ", diff.diffdays),
+        ]),
+        Row(
+          children: [
+            difffWdiget("Hours: ", diff.diffhours),
+            difffWdiget("Minutes: ", diff.diffminutes),
+            difffWdiget("Seconds: ", diff.diffSeconds),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget getErrorView(String message) {
+    return Column(
+      children: [
+        Text(message),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final dtProvider = Provider.of<DateTimeProvider>(
@@ -28,27 +55,18 @@ class TimeDifferenceWidget extends StatelessWidget {
       listen: false,
     );
 
-    var diff = Diff(dtProvider.getFrom(), dtProvider.getTo());
+    Widget resultView;
+    try {
+      var diff = Diff(dtProvider.getFrom(), dtProvider.getTo());
+      resultView = getDiffView(diff);
+    } on Exception catch (ex) {
+      resultView = getErrorView(ex.toString());
+    }
 
     return Container(
       margin: EdgeInsets.all(0),
       child: Center(
-        child: Column(
-          children: [
-            Row(children: [
-              difffWdiget("Years: ", diff.diffYears),
-              difffWdiget("Months: ", diff.diffmonths),
-              difffWdiget("Days: ", diff.diffdays),
-            ]),
-            Row(
-              children: [
-                difffWdiget("Hours: ", diff.diffhours),
-                difffWdiget("Minutes: ", diff.diffminutes),
-                difffWdiget("Seconds: ", diff.diffSeconds),
-              ],
-            ),
-          ],
-        ),
+        child: resultView,
       ),
     );
   }
