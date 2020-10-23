@@ -1,5 +1,5 @@
+import 'package:TimeCalc/widgets/diff.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:time_calculator/widgets/diff.dart';
 
 // test with: https://www.timeanddate.com/date/timeduration.html
 void main() {

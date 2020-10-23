@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
-import 'package:time_calculator/provider/date_time_provider.dart';
-import 'package:provider/provider.dart';
-import 'package:time_calculator/widgets/date-type.dart';
+import '../provider/date_time_provider.dart';
+import 'date-type.dart';
 
 class DatePickerWidget extends StatelessWidget {
   final DateTimeProvider dtProvider;

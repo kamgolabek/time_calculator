@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:time_calculator/widgets/time_difference_widget.dart';
-import 'package:time_calculator/widgets/time_selector_widget.dart';
+import '../widgets/time_difference_widget.dart';
+import '../widgets/time_selector_widget.dart';
 
 class MainScreen extends StatelessWidget {
   @override
@@ -18,6 +18,9 @@ class MainScreen extends StatelessWidget {
               child: Column(
             children: [
               TimeSelectorWidget(),
+              SizedBox(
+                height: 30,
+              ),
               TimeDifferenceWidget(),
             ],
           )),

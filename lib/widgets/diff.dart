@@ -1,5 +1,3 @@
-import 'package:time_calculator/provider/date_time_provider.dart';
-
 class Diff {
   bool reversedFromAndToDates = false;
   Duration duartion;

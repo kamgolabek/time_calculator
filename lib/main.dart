@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:time_calculator/provider/date_time_provider.dart';
-import 'package:time_calculator/screens/main_screen.dart';
+import 'provider/date_time_provider.dart';
+import 'screens/main_screen.dart';
 
 void main() => runApp(MyApp());
 

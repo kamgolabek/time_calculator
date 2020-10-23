@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:time_calculator/provider/date_time_provider.dart';
-import 'package:time_calculator/widgets/date-type.dart';
-import 'package:time_calculator/widgets/date_picker_widget.dart';
+import '../provider/date_time_provider.dart';
+import 'date-type.dart';
+import 'date_picker_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_icons/flutter_icons.dart';
