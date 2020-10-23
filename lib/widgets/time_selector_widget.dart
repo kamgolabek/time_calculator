@@ -26,74 +26,70 @@ class TimeSelectorWidget extends StatelessWidget {
           SizedBox(
             height: 20,
           ),
-          Card(
-            elevation: 5,
-            child: Column(
-              children: [
-                // ListTile(
-                //   leading: Icon(FontAwesome.star),
-                //   title: const Text('From'),
-                //   // subtitle: Text(
-                //   //   'Secondary Text',
-                //   //   style: TextStyle(color: Colors.black.withOpacity(0.6)),
-                //   // ),
-                // ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Column(
-                      children: [
-                        Text(
-                          "FROM",
-                          style: TextStyle(
-                            color: Colors.blue,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
+          Container(
+            child: Card(
+              color: new Color(0xFFdfe4ea),
+              elevation: 50,
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Column(
+                        children: [
+                          Text(
+                            "FROM",
+                            style: TextStyle(
+                              color: Colors.blue,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                            ),
+                          )
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          DatePickerWidget(DateType.FROM, dtProvider),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          DatePickerWidget(DateType.TIME_FROM, dtProvider),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          IconButton(
+                            icon: Icon(FontAwesome.refresh),
+                            onPressed: () => dtProvider.setFrom(DateTime.now()),
+                            tooltip: "Set current time",
                           ),
-                        )
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        DatePickerWidget(DateType.FROM, dtProvider),
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        DatePickerWidget(DateType.TIME_FROM, dtProvider),
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        IconButton(
-                          icon: Icon(FontAwesome.refresh),
-                          onPressed: () => dtProvider.setFrom(DateTime.now()),
-                          tooltip: "Set current time",
-                        ),
-                      ],
-                    )
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      DateFormat('yyyy-MM-dd – HH:mm:ss')
-                          .format(dtProvider.getFrom()),
-                      style: TextStyle(fontSize: 28),
-                      softWrap: true,
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
-                ),
-              ],
+                        ],
+                      )
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        DateFormat('yyyy-MM-dd – HH:mm:ss')
+                            .format(dtProvider.getFrom()),
+                        style: TextStyle(fontSize: 28),
+                        softWrap: true,
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
           SizedBox(
-            height: 30,
+            height: 10,
           ),
           Card(
-            elevation: 5,
+            color: new Color(0xFFdfe4ea),
+            elevation: 50,
             margin: EdgeInsets.all(14),
             child: Column(
               children: [

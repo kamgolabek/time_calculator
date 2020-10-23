@@ -8,12 +8,72 @@ import 'diff.dart';
 class TimeDifferenceWidget extends StatelessWidget {
   const TimeDifferenceWidget({Key key}) : super(key: key);
 
+  Widget calendarDiffWidget(Diff diff) {
+    return Card(
+      color: new Color(0xFF3742fa),
+      child: Center(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            difffWdiget("Years: ", diff.diffYears),
+            difffWdiget("Months: ", diff.diffmonths),
+            difffWdiget("Days: ", diff.diffdays),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget timeDiffWidget(Diff diff) {
+    return Card(
+      color: new Color(0xFF3742fa),
+      child: Center(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            difffWdiget("Hours: ", diff.diffhours),
+            difffWdiget("Minutes: ", diff.diffminutes),
+            difffWdiget("Seconds: ", diff.diffSeconds),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget alternateDiffWidget(Diff diff) {
+    return Card(
+      color: new Color(0xFF3742fa),
+      child: Center(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            difffWdiget("Days: ", diff.duartion.inDays),
+            difffWdiget("Hours: ", diff.duartion.inHours),
+            difffWdiget("Minutes: ", diff.duartion.inMinutes),
+            //difffWdiget("Seconds: ", diff.duartion.inSeconds),
+          ],
+        ),
+      ),
+    );
+  }
+
   Widget difffWdiget(String title, int diff) {
+    var headerStyle = TextStyle(fontSize: 20, color: Colors.white);
+    var valueStyle = TextStyle(fontSize: 20, color: Colors.white);
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
-          children: [Text(title), Text(diff.toString())],
+          children: [
+            Text(
+              title,
+              style: headerStyle,
+            ),
+            Text(
+              diff.toString(),
+              style: valueStyle,
+            )
+          ],
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
         ),
@@ -22,21 +82,14 @@ class TimeDifferenceWidget extends StatelessWidget {
   }
 
   Widget getDiffView(Diff diff) {
-    return Column(
-      children: [
-        Row(children: [
-          difffWdiget("Years: ", diff.diffYears),
-          difffWdiget("Months: ", diff.diffmonths),
-          difffWdiget("Days: ", diff.diffdays),
-        ]),
-        Row(
-          children: [
-            difffWdiget("Hours: ", diff.diffhours),
-            difffWdiget("Minutes: ", diff.diffminutes),
-            difffWdiget("Seconds: ", diff.diffSeconds),
-          ],
-        ),
-      ],
+    return Container(
+      child: Column(
+        children: [
+          calendarDiffWidget(diff),
+          timeDiffWidget(diff),
+          alternateDiffWidget(diff),
+        ],
+      ),
     );
   }
 

@@ -5,23 +5,17 @@ import 'package:time_calculator/screens/main_screen.dart';
 
 void main() => runApp(MyApp());
 
+const PrimaryColor = const Color(0xFF2f3542);
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      // builder: (ctx) => DateTimeProvider(),
       create: (ctx) => DateTimeProvider(),
       child: MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Time Calculator',
         theme: ThemeData(
-          primarySwatch: Colors.purple,
-          accentColor: Colors.deepOrange,
-          // textTheme: GoogleFonts.shadowsIntoLightTextTheme(
-          //   Theme.of(context).textTheme,
-          // ),
-          // primaryTextTheme: GoogleFonts.shadowsIntoLightTextTheme(
-          //   Theme.of(context).textTheme,
-          // )
+          primaryColor: PrimaryColor,
           fontFamily: 'Lato',
         ),
         home: MainScreen(),

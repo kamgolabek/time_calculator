@@ -10,28 +10,23 @@ import 'package:time_calculator/widgets/time_selector_widget.dart';
 class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final dtProvider = Provider.of<DateTimeProvider>(
-      context,
-      listen: true,
-    );
-
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Text('Time Calculator'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Center(
-            child: Column(
-          children: [
-            Text(
-              "Time Calculator",
-              style: TextStyle(fontSize: 30),
-            ),
-            TimeSelectorWidget(),
-            TimeDifferenceWidget(),
-          ],
-        )),
+      body: Container(
+        decoration: new BoxDecoration(color: new Color(0xFFa4b0be)),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Center(
+              child: Column(
+            children: [
+              TimeSelectorWidget(),
+              TimeDifferenceWidget(),
+            ],
+          )),
+        ),
       ),
     );
   }

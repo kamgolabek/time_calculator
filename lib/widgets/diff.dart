@@ -1,6 +1,7 @@
 import 'package:time_calculator/provider/date_time_provider.dart';
 
 class Diff {
+  Duration duartion;
   int diffYears;
   int diffmonths;
   int diffdays;
@@ -16,7 +17,7 @@ class Diff {
     if (from.isAfter(to)) {
       throw Exception("'from' time can't be after 'to' time");
     }
-    Duration absDiff = to.difference(from);
+    duartion = to.difference(from);
 
     this.diffhours = to.hour - from.hour;
     this.diffminutes = to.minute - from.minute;
