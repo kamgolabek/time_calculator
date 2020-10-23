@@ -1,6 +1,7 @@
 import 'package:time_calculator/provider/date_time_provider.dart';
 
 class Diff {
+  bool reversedFromAndToDates = false;
   Duration duartion;
   int diffYears;
   int diffmonths;
@@ -15,7 +16,10 @@ class Diff {
 
   void calculateDifss(DateTime from, DateTime to) {
     if (from.isAfter(to)) {
-      throw Exception("'from' time can't be after 'to' time");
+      DateTime temp = to;
+      to = from;
+      from = temp;
+      reversedFromAndToDates = true;
     }
     duartion = to.difference(from);
 

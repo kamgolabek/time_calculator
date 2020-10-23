@@ -1,11 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:time_calculator/calculator/time_calculator.dart';
 import 'package:time_calculator/widgets/diff.dart';
 
 // test with: https://www.timeanddate.com/date/timeduration.html
 void main() {
-  TimeCalculator tc = TimeCalculator();
-
   void validate(Diff diff, int years, int months, int days, int hours,
       int minutes, int seconds) {
     expect(diff.diffYears, years, reason: "Invalid years difference");

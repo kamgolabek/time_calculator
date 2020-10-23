@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:time_calculator/calculator/time_calculator.dart';
 import 'package:provider/provider.dart';
 import 'package:time_calculator/provider/date_time_provider.dart';
 
@@ -81,13 +80,45 @@ class TimeDifferenceWidget extends StatelessWidget {
     );
   }
 
-  Widget getDiffView(Diff diff) {
+  Widget reversedTimesWidget(BuildContext context) {
+    double c_width = MediaQuery.of(context).size.width * 0.8;
+    return Container(
+      padding: const EdgeInsets.all(16.0),
+      width: c_width,
+      child: Center(
+        child: Column(
+          children: [
+            Text(
+              "Warning !",
+              style: TextStyle(
+                  color: new Color(0xFFb33939),
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold),
+            ),
+            Text(
+              "The Start date was after the End date, so the Start and End fields were swapped.",
+              style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 17,
+                  fontWeight: FontWeight.bold),
+            ),
+          ],
+        ),
+      ),
+    );
+
+    //Text("Warning !");
+    //The Start date was after the End date, so the Start and End fields were swapped")
+  }
+
+  Widget getDiffView(Diff diff, BuildContext context) {
     return Container(
       child: Column(
         children: [
+          if (diff.reversedFromAndToDates) reversedTimesWidget(context),
           calendarDiffWidget(diff),
           timeDiffWidget(diff),
-          alternateDiffWidget(diff),
+          //alternateDiffWidget(diff),
         ],
       ),
     );
@@ -105,13 +136,13 @@ class TimeDifferenceWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final dtProvider = Provider.of<DateTimeProvider>(
       context,
-      listen: false,
+      listen: true,
     );
 
     Widget resultView;
     try {
       var diff = Diff(dtProvider.getFrom(), dtProvider.getTo());
-      resultView = getDiffView(diff);
+      resultView = getDiffView(diff, context);
     } on Exception catch (ex) {
       resultView = getErrorView(ex.toString());
     }
