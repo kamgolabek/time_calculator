@@ -39,17 +39,61 @@ class TimeDifferenceWidget extends StatelessWidget {
     );
   }
 
+  Widget altDiffWidget(Diff diff) {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Card(
+              color: new Color(0xFF474787),
+              child: difffWdiget("In Days: ", diff.duartion.inDays),
+            ),
+            Card(
+              color: new Color(0xFF218c74),
+              child: difffWdiget("In Hours: ", diff.duartion.inHours),
+            ),
+            Card(
+              color: new Color(0xFFcd6133),
+              child: difffWdiget("In Minutes: ", diff.duartion.inMinutes),
+            ),
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Card(
+              color: new Color(0xFF84817a),
+              child: difffWdiget(
+                "In Seconds: ",
+                diff.duartion.inSeconds,
+              ),
+            ),
+            Card(
+              color: new Color(0xFFffb142),
+              child: difffWdiget(
+                "In Milliseconds: ",
+                diff.duartion.inMilliseconds,
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
   Widget alternateDiffWidget(Diff diff) {
     return Card(
-      color: new Color(0xFF3742fa),
+      color: new Color(0xFF2d3436),
       child: Center(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            difffWdiget("Days: ", diff.duartion.inDays),
-            difffWdiget("Hours: ", diff.duartion.inHours),
-            difffWdiget("Minutes: ", diff.duartion.inMinutes),
-            //difffWdiget("Seconds: ", diff.duartion.inSeconds),
+            difffWdiget("Years: ", diff.duartion.inDays),
+            // difffWdiget("Months: ", diff.duartion.inHours),
+            // difffWdiget("Days: ", diff.duartion.inMinutes),
           ],
         ),
       ),
@@ -119,6 +163,9 @@ class TimeDifferenceWidget extends StatelessWidget {
           calendarDiffWidget(diff),
           timeDiffWidget(diff),
           //alternateDiffWidget(diff),
+          altDiffWidget(diff),
+          // altDiffWidget(diff),
+          // altDiffWidget(diff),
         ],
       ),
     );
