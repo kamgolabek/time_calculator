@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       create: (ctx) => DateTimeProvider(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Time Calculator',
+        title: 'Time Tools',
         theme: ThemeData(
           primaryColor: PrimaryColor,
           fontFamily: 'Lato',

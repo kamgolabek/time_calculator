@@ -9,7 +9,7 @@ class TimeDifferenceWidget extends StatelessWidget {
 
   Widget calendarDiffWidget(Diff diff) {
     return Card(
-      color: new Color(0xFF3742fa),
+      color: new Color(0xFF2d3436),
       child: Center(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -25,7 +25,7 @@ class TimeDifferenceWidget extends StatelessWidget {
 
   Widget timeDiffWidget(Diff diff) {
     return Card(
-      color: new Color(0xFF3742fa),
+      color: new Color(0xFF2d3436),
       child: Center(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
