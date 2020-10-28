@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (ctx) => DateTimeProvider(),
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Time Calculator',
         theme: ThemeData(
           primaryColor: PrimaryColor,
