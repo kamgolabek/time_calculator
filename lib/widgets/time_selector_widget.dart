@@ -1,3 +1,4 @@
+import 'package:TimeCalc/dialog/dialog_utils.dart';
 import 'package:flutter/material.dart';
 import '../provider/date_time_provider.dart';
 import 'date-type.dart';
@@ -29,7 +30,9 @@ class TimeSelectorWidget extends StatelessWidget {
       children: [
         IconButton(
           icon: Icon(FontAwesome.refresh),
-          onPressed: onPressedFunc,
+          onPressed: () {
+            onPressedFunc();
+          },
           tooltip: "Set current time",
         ),
       ],
@@ -50,11 +53,16 @@ class TimeSelectorWidget extends StatelessWidget {
     );
   }
 
-  Widget buildTimeSelectorWidget(
-      String title, DateTimeProvider dtProvider, bool isFromDate) {
+  Widget buildTimeSelectorWidget(String title, DateTimeProvider dtProvider,
+      bool isFromDate, BuildContext context) {
     DateType dateSelector = DateType.FROM;
     DateType timeSelector = DateType.TIME_FROM;
-    VoidCallback setCurrTimeCallback = () => dtProvider.setFrom(DateTime.now());
+    VoidCallback setCurrTimeCallback = () {
+      dtProvider.setFrom(DateTime.now());
+      if (dtProvider.isFromAfterTo()) {
+        DialogUtils.showAlertDialog(context);
+      }
+    };
     DateTime currDateTime = dtProvider.getFrom();
 
     if (!isFromDate) {
@@ -97,11 +105,11 @@ class TimeSelectorWidget extends StatelessWidget {
           // SizedBox(
           //   height: 20,
           // ),
-          buildTimeSelectorWidget("FROM", dtProvider, true),
+          buildTimeSelectorWidget("FROM", dtProvider, true, context),
           // SizedBox(
           //   height: 10,
           // ),
-          buildTimeSelectorWidget("TO", dtProvider, false),
+          buildTimeSelectorWidget("TO", dtProvider, false, context),
         ],
       ),
     );

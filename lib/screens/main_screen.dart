@@ -6,7 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 class MainScreen extends StatelessWidget {
   Widget screenTitleWidget(String title) {
     return Padding(
-      padding: const EdgeInsets.all(26.0),
+      padding: const EdgeInsets.all(8.0),
       child: Text(
         title,
         style: GoogleFonts.aBeeZee(
@@ -24,9 +24,10 @@ class MainScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
+        leading: Text("TimeMultiTool"),
         title: Text(
-          'TimeToolBox',
-          style: GoogleFonts.pressStart2p(textStyle: TextStyle(fontSize: 20)),
+          '2 dates difference',
+          // style: GoogleFonts.pressStart2p(textStyle: TextStyle(fontSize: 20)),
         ),
       ),
       body: Container(
@@ -40,7 +41,7 @@ class MainScreen extends StatelessWidget {
               child: ListView(children: [
             Column(
               children: [
-                screenTitleWidget("2 DATES DIFFERENCE"),
+                // screenTitleWidget("2 DATES DIFFERENCE"),
                 TimeSelectorWidget(),
                 SizedBox(
                   height: 30,

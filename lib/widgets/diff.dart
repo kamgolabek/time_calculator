@@ -1,3 +1,6 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
 class Diff {
   bool reversedFromAndToDates = false;
   Duration duartion;
@@ -7,8 +10,10 @@ class Diff {
   int diffhours;
   int diffminutes;
   int diffSeconds;
+  BuildContext context;
 
-  Diff(DateTime from, DateTime to) {
+  Diff(DateTime from, DateTime to, [BuildContext context]) {
+    this.context = context;
     calculateDifss(from, to);
   }
 
@@ -18,6 +23,7 @@ class Diff {
       to = from;
       from = temp;
       reversedFromAndToDates = true;
+      //showAlertDialog(this.context);
     }
     duartion = to.difference(from);
 

@@ -1,7 +1,9 @@
+import 'package:TimeCalc/dialog/dialog_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import '../provider/date_time_provider.dart';
 import 'date-type.dart';
+import 'package:provider/provider.dart';
 
 class DatePickerWidget extends StatelessWidget {
   final DateTimeProvider dtProvider;
@@ -58,10 +60,10 @@ class DatePickerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final dtProvider = Provider.of<DateTimeProvider>(
-    //   context,
-    //   listen: false,
-    // );
+    final dtProvider = Provider.of<DateTimeProvider>(
+      context,
+      listen: false,
+    );
 
     return IconButton(
       icon: Icon(ico),
@@ -74,6 +76,9 @@ class DatePickerWidget extends StatelessWidget {
             print('change $date');
           }, onConfirm: (date) {
             onchangeFunc(date);
+            if (dtProvider.isFromAfterTo()) {
+              DialogUtils.showAlertDialog(context);
+            }
           }, currentTime: this.currentDate, locale: LocaleType.en);
         } else {
           DatePicker.showTimePicker(context,
@@ -82,13 +87,12 @@ class DatePickerWidget extends StatelessWidget {
             print('change $date');
           }, onConfirm: (date) {
             onchangeFunc(date);
+            if (dtProvider.isFromAfterTo()) {
+              DialogUtils.showAlertDialog(context);
+            }
           }, currentTime: this.currentDate, locale: LocaleType.en);
         }
       },
-      // child: Text(
-      //   title,
-      //   style: TextStyle(color: Colors.blue),
-      // ),
     );
   }
 }

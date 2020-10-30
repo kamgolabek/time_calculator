@@ -4,6 +4,10 @@ class DateTimeProvider with ChangeNotifier {
   DateTime _from = DateTime.now();
   DateTime _to = DateTime.now();
 
+  bool isFromAfterTo() {
+    return _from.isAfter(_to);
+  }
+
   void setFrom(DateTime from) {
     this._from = from;
     notifyListeners();

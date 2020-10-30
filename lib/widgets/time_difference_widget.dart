@@ -159,7 +159,6 @@ class TimeDifferenceWidget extends StatelessWidget {
     return Container(
       child: Column(
         children: [
-          if (diff.reversedFromAndToDates) reversedTimesWidget(context),
           calendarDiffWidget(diff),
           timeDiffWidget(diff),
           //alternateDiffWidget(diff),
@@ -189,6 +188,9 @@ class TimeDifferenceWidget extends StatelessWidget {
     Widget resultView;
     try {
       var diff = Diff(dtProvider.getFrom(), dtProvider.getTo());
+      // if (diff.reversedFromAndToDates) {
+      //   showAlertDialog(context);
+      // }
       resultView = getDiffView(diff, context);
     } on Exception catch (ex) {
       resultView = getErrorView(ex.toString());
