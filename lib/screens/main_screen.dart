@@ -1,3 +1,4 @@
+import 'package:TimeCalc/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import '../widgets/time_difference_widget.dart';
 import '../widgets/time_selector_widget.dart';
@@ -22,14 +23,14 @@ class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        leading: Text("TimeMultiTool"),
-        title: Text(
-          '2 dates difference',
+      appBar: CustomAppBar("TimeCalc"
+          // centerTitle: true,
+          // leading: Text("TimeMultiTool"),
+          // title: Text(
+          //   '2 dates difference',
           // style: GoogleFonts.pressStart2p(textStyle: TextStyle(fontSize: 20)),
-        ),
-      ),
+          // ),
+          ),
       body: Container(
         decoration: new BoxDecoration(
           image: DecorationImage(
