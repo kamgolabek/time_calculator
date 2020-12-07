@@ -24,7 +24,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
       leading: IconButton(
         icon:
             Image.asset('assets/launcher/icon.png'), //Icon(Icons.chevron_left),
-        onPressed: () => Navigator.pop(context),
+        // onPressed: () => Navigator.pop(context),
         color: Colors.black,
       ),
     );

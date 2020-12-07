@@ -4,10 +4,14 @@ import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import '../provider/date_time_provider.dart';
 import 'date-type.dart';
 import 'package:provider/provider.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
 class DatePickerWidget extends StatelessWidget {
   final DateTimeProvider dtProvider;
   final DateType dateType;
+  final String pattern;
+  final TextStyle style;
   IconData ico;
 
   DateTime currentDate;
@@ -16,7 +20,7 @@ class DatePickerWidget extends StatelessWidget {
   DateTime minDate = DateTime(0, 1, 1);
   DateTime maxDate = DateTime(9999, 12, 31);
 
-  DatePickerWidget(this.dateType, this.dtProvider) {
+  DatePickerWidget(this.dateType, this.dtProvider, this.pattern, this.style) {
     switch (dateType) {
       case DateType.FROM:
         this.title = "Set Date From";
@@ -58,6 +62,32 @@ class DatePickerWidget extends StatelessWidget {
         currentDate.minute, currentDate.second);
   }
 
+  void doOnClick(BuildContext context) {
+    if (dateType == DateType.FROM || dateType == DateType.TO) {
+      DatePicker.showDatePicker(context,
+          showTitleActions: true,
+          minTime: minDate,
+          maxTime: maxDate, onChanged: (date) {
+        print('change $date');
+      }, onConfirm: (date) {
+        onchangeFunc(date);
+        if (dtProvider.isFromAfterTo()) {
+          DialogUtils.showAlertDialog(context);
+        }
+      }, currentTime: this.currentDate, locale: LocaleType.en);
+    } else {
+      DatePicker.showTimePicker(context,
+          showTitleActions: true, showSecondsColumn: true, onChanged: (date) {
+        print('change $date');
+      }, onConfirm: (date) {
+        onchangeFunc(date);
+        if (dtProvider.isFromAfterTo()) {
+          DialogUtils.showAlertDialog(context);
+        }
+      }, currentTime: this.currentDate, locale: LocaleType.en);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final dtProvider = Provider.of<DateTimeProvider>(
@@ -65,34 +95,17 @@ class DatePickerWidget extends StatelessWidget {
       listen: false,
     );
 
-    return IconButton(
-      icon: Icon(ico),
-      onPressed: () {
-        if (dateType == DateType.FROM || dateType == DateType.TO) {
-          DatePicker.showDatePicker(context,
-              showTitleActions: true,
-              minTime: minDate,
-              maxTime: maxDate, onChanged: (date) {
-            print('change $date');
-          }, onConfirm: (date) {
-            onchangeFunc(date);
-            if (dtProvider.isFromAfterTo()) {
-              DialogUtils.showAlertDialog(context);
-            }
-          }, currentTime: this.currentDate, locale: LocaleType.en);
-        } else {
-          DatePicker.showTimePicker(context,
-              showTitleActions: true,
-              showSecondsColumn: true, onChanged: (date) {
-            print('change $date');
-          }, onConfirm: (date) {
-            onchangeFunc(date);
-            if (dtProvider.isFromAfterTo()) {
-              DialogUtils.showAlertDialog(context);
-            }
-          }, currentTime: this.currentDate, locale: LocaleType.en);
-        }
-      },
+    return GestureDetector(
+      onTap: () => doOnClick(context),
+      child: Text(
+        DateFormat(pattern).format(currentDate),
+        style: style,
+      ),
     );
+
+    // return IconButton(
+    //   icon: Icon(ico),
+    //   onPressed: () => doOnClick(context),
+    // );
   }
 }

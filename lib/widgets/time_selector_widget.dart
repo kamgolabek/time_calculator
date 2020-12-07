@@ -6,6 +6,7 @@ import 'date_picker_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class TimeSelectorWidget extends StatelessWidget {
   const TimeSelectorWidget({Key key}) : super(key: key);
@@ -72,25 +73,116 @@ class TimeSelectorWidget extends StatelessWidget {
       currDateTime = dtProvider.getTo();
     }
 
-    return Card(
-      color: new Color(0xFFdfe4ea),
-      elevation: 50,
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              dateTypeWidget(title),
-              DatePickerWidget(dateSelector, dtProvider),
-              DatePickerWidget(timeSelector, dtProvider),
-              setCurrentTimeWidget(setCurrTimeCallback),
-            ],
-          ),
-          dateTimeWidget(currDateTime),
-        ],
-      ),
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              title,
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+          ],
+        ),
+        SizedBox(
+          height: 20,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Column(
+              children: [
+                // Text(
+                //   "2020-06-20",
+                //   style: GoogleFonts.roboto(
+                //     fontSize: 30,
+                //     color: Colors.white,
+                //   ), //TextStyle(fontSize: 30),
+                // ),
+                DatePickerWidget(
+                  dateSelector,
+                  dtProvider,
+                  'yyyy-MM-dd',
+                  GoogleFonts.roboto(
+                    fontSize: 30,
+                    color: Colors.white,
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              width: 20,
+            ),
+            Column(
+              children: [
+                // IconButton(
+                //   icon: Icon(Icons.edit),
+                //   onPressed: null,
+                // ),
+                // Text(
+                //   "15:00:00",
+                //   style: TextStyle(
+                //     fontSize: 40,
+                //     fontFamily: "Digital7",
+                //     color: Colors.white,
+                //   ),
+                // ),
+                DatePickerWidget(
+                  timeSelector,
+                  dtProvider,
+                  'HH:mm:ss',
+                  TextStyle(
+                    fontSize: 40,
+                    fontFamily: "Digital7",
+                    color: Colors.white,
+                  ),
+                ),
+              ],
+            ),
+          ],
+        )
+      ],
     );
   }
+
+  // Widget buildTimeSelectorWidget2(String title, DateTimeProvider dtProvider,
+  //     bool isFromDate, BuildContext context) {
+  //   DateType dateSelector = DateType.FROM;
+  //   DateType timeSelector = DateType.TIME_FROM;
+  //   VoidCallback setCurrTimeCallback = () {
+  //     dtProvider.setFrom(DateTime.now());
+  //     if (dtProvider.isFromAfterTo()) {
+  //       DialogUtils.showAlertDialog(context);
+  //     }
+  //   };
+  //   DateTime currDateTime = dtProvider.getFrom();
+
+  //   if (!isFromDate) {
+  //     dateSelector = DateType.TO;
+  //     timeSelector = DateType.TIME_TO;
+  //     setCurrTimeCallback = () => dtProvider.setTo(DateTime.now());
+  //     currDateTime = dtProvider.getTo();
+  //   }
+
+  //   return Card(
+  //     color: new Color(0xFFdfe4ea),
+  //     elevation: 50,
+  //     child: Column(
+  //       children: [
+  //         Row(
+  //           mainAxisAlignment: MainAxisAlignment.center,
+  //           children: [
+  //             dateTypeWidget(title),
+  //             DatePickerWidget(dateSelector, dtProvider),
+  //             DatePickerWidget(timeSelector, dtProvider),
+  //             setCurrentTimeWidget(setCurrTimeCallback),
+  //           ],
+  //         ),
+  //         dateTimeWidget(currDateTime),
+  //       ],
+  //     ),
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -106,9 +198,16 @@ class TimeSelectorWidget extends StatelessWidget {
           //   height: 20,
           // ),
           buildTimeSelectorWidget("FROM", dtProvider, true, context),
-          // SizedBox(
-          //   height: 10,
-          // ),
+          SizedBox(
+            height: 10,
+          ),
+          const Divider(
+            color: Colors.black,
+            height: 20,
+            thickness: 1,
+            indent: 10,
+            endIndent: 10,
+          ),
           buildTimeSelectorWidget("TO", dtProvider, false, context),
         ],
       ),
