@@ -45,7 +45,7 @@ class MainScreen extends StatelessWidget {
                 // screenTitleWidget("2 DATES DIFFERENCE"),
                 TimeSelectorWidget(),
                 SizedBox(
-                  height: 60,
+                  height: 30,
                 ),
                 TimeDifferenceWidget(),
               ],

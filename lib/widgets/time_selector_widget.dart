@@ -80,12 +80,16 @@ class TimeSelectorWidget extends StatelessWidget {
           children: [
             Text(
               title,
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              style: GoogleFonts.roboto(
+                fontSize: 20,
+                color: Color(0xFF2f3542),
+              ), //TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
+            setCurrentTimeWidget(setCurrTimeCallback),
           ],
         ),
         SizedBox(
-          height: 20,
+          height: 0,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -197,7 +201,7 @@ class TimeSelectorWidget extends StatelessWidget {
           // SizedBox(
           //   height: 20,
           // ),
-          buildTimeSelectorWidget("FROM", dtProvider, true, context),
+          buildTimeSelectorWidget("Start Date", dtProvider, true, context),
           SizedBox(
             height: 10,
           ),
@@ -208,7 +212,7 @@ class TimeSelectorWidget extends StatelessWidget {
             indent: 10,
             endIndent: 10,
           ),
-          buildTimeSelectorWidget("TO", dtProvider, false, context),
+          buildTimeSelectorWidget("End Date", dtProvider, false, context),
         ],
       ),
     );
