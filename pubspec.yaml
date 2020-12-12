@@ -26,6 +26,12 @@ dependencies:
     sdk: flutter
     
   flutter_datetime_picker: ^1.4.0
+  get:
+  intl: ^0.16.1
+  flutter_icons: ^1.1.0
+  flutter_launcher_icons: ^0.8.1
+  google_fonts: ^1.1.1
+  provider: 3.2.0
  
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -34,12 +40,11 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  google_fonts: ^1.1.1
-  provider: 3.2.0
-  intl: ^0.16.1
+  
+  
   material_design_icons_flutter: ^4.0.5655
-  flutter_icons: ^1.1.0
-  flutter_launcher_icons: ^0.8.1
+  
+ 
   flutter_inner_drawer: "^0.5.7+2"
 
 # For information on the generic Dart part of this file, see the
